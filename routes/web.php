@@ -46,14 +46,13 @@ Route::get('/admin/posts/example/{id}', function ($id) {
 
 // laravel 8 新 route
 
-// 方法1 寫出完整路徑(app的a要大寫)
-Route::get('/post', '\App\Http\Controllers\PostsController@index', function ($id) {
+// 方法1 寫出完整路徑(app的a要大寫) (會直接就在PostController index()處就回傳給view了)
+Route::get('/lar8/{id}', '\App\Http\Controllers\PostsController@index', function ($id) {
 });
 
-// 方法2 使用Use
+// 方法2 使用Use (會直接就在PostController index()處就回傳給view了)
 use App\Http\Controllers\PostsController;
-
-Route::get('/post/{id}', [PostsController::class, 'index'], function ($id) {
+Route::get('/lar8/{id}', [PostsController::class, 'index'], function ($id) {
 });
 
 // 如果需要使用route resource去取得預設CRUD之function 不須加[]
