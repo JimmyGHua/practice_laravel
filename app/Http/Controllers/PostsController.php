@@ -8,6 +8,7 @@ class PostsController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * 這邊會直接接從web.php(route)來的變數為$id
      *
      * @return \Illuminate\Http\Response
      */

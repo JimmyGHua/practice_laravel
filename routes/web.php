@@ -52,11 +52,16 @@ Route::get('/lar8/{id}', '\App\Http\Controllers\PostsController@index', function
 
 // 方法2 使用Use (會直接就在PostController index()處就回傳給view了)
 use App\Http\Controllers\PostsController;
+
 Route::get('/lar8/{id}', [PostsController::class, 'index'], function ($id) {
 });
 
-// 如果需要使用route resource去取得預設CRUD之function 不須加[]
-Route::resource('posts', PostsController::class);
+// 使用Route:resource 會可以follow php artisan route:list 的預設restful規則 (就不用一個一個定義就可對應method)
+// 也就是用resource就follow route:list的規則 且生成controller時也  make:controller --resource 以對應
+// 如訪問(get) /postss/{id} => show()  訪問(get) /posts/create =>create()
+Route::resource('postss', PostsController::class);
+
+
 // 不帶任何參數直接return view
 Route::get('/contact', [PostsController::class, 'contact']);
 // 帶參數return view 並使用樣板引擎接收此參數
